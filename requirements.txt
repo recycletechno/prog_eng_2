@@ -1,3 +1,6 @@
 flask
 transformers
 flake8
+torch
+torchvision
+torchaudio
