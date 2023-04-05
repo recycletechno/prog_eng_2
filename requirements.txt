@@ -1,6 +1,5 @@
-flask
-transformers
+fastapi
+uvicorn
+pydantic
 flake8
-torch
-torchvision
-torchaudio
+flair

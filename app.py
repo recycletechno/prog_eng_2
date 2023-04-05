@@ -1,13 +1,22 @@
-from flask import Flask, jsonify, request
-from model import predict_sentiment
+from fastapi import FastAPI
+from pydantic import BaseModel
+from get_sentiment import get_sentiment_fx
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    text = request.json['text']
-    sentiment = predict_sentiment(text)
-    return jsonify({'sentiment': sentiment})
+class InputText(BaseModel):
+    text: str
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Add a simple GET response at the base url "/"
+@app.get("/")
+def read_root():
+    return {"test_response": "Hello URFU World!"}
+
+@app.post("/predict")
+async def predict_sentiment(input_text: InputText):
+
+    sentiment = get_sentiment(input_text.text)
+    return {
+        "text": input_text.text,
+        "sentiment": sentiment,
+        }
