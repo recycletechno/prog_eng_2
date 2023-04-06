@@ -1,4 +1,3 @@
-from typing import Tuple, List
 from flair.models import TextClassifier
 from flair.data import Sentence
 
