@@ -1,4 +1,3 @@
-# tests/test_app.py
 import unittest
 from app import app
 from fastapi.testclient import TestClient
@@ -6,7 +5,14 @@ from fastapi.testclient import TestClient
 client = TestClient(app)
 
 
-def get_test(get_client: TestClient):
-    response = get_client.post('/predict', json={'text': 'This is a great movie!'})
+def test_response():
+    response = client.post('/predict', json={'text': 'Ekb is a great city!'})
+    resp_json = response.json()
+
     assert response.status_code == 200
-    assert response.json == {'sentiment': 'positive'}
+    assert isinstance(resp_json, dict), 'Response of wrong type!'
+
+    if 'sentiment' in resp_json:
+        assert resp_json['sentiment']['sentiment'] == 'POSITIVE'
+    else:
+        raise AssertionError('Sentiment key is not in dict')
