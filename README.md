@@ -34,7 +34,7 @@ curl --location --request POST "http://localhost:5000/predict" \
 This should return a JSON response with the predicted sentiment:
 
 ```json
-{"text":"I love EKB!","sentiment":{"sentiment":"POSITIVE","polarity": > 0.9}}
+{"text":"I love EKB!","sentiment":{"sentiment":"POSITIVE","polarity":0.9985707998275757}}
 ```
 
 You can test other input texts as well to see how the model performs.
