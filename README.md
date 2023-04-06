@@ -24,7 +24,7 @@ This should start the app and make it available at http://localhost:8080.
 To send a POST request to the `/predict` endpoint, you can use `curl` or an HTTP client like Postman. For example, you can use the following `curl` command:
 
 ```shell
-curl --location --request POST "http://localhost:5000/predict" \
+curl --location --request POST "http://localhost:8080/predict" \
 --header "Content-Type: application/json" \
 --data-raw "{
     \"text\": \"I love EKB!\"
