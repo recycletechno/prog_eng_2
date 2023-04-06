@@ -1,6 +1,6 @@
 # Sentiment Analysis Application
 
-This is a small machine learning application for sentiment analysis that uses a pre-trained model from Hugging Face's Transformers library. The application is implemented in Python and uses the Flask web framework for serving predictions.
+This is a small machine learning application for sentiment analysis that uses a pre-trained model. The application is implemented in Python and uses the FastAPI framework for serving predictions.
 
 ## Installation
 
@@ -13,38 +13,41 @@ pip install -r requirements.txt
 
 ## Usage
 
-To start the Flask app, run the following command:
+To start the app, run the following command:
 
 ```shell
-flask run
+python app.py
 ```
 
-This should start the app and make it available at http://localhost:5000.
+This should start the app and make it available at http://localhost:8080.
 
 To send a POST request to the `/predict` endpoint, you can use `curl` or an HTTP client like Postman. For example, you can use the following `curl` command:
 
 ```shell
-curl --location --request POST 'http://localhost:5000/predict' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "text": "I love this product!"
-}'
+curl --location --request POST "http://localhost:5000/predict" \
+--header "Content-Type: application/json" \
+--data-raw "{
+    \"text\": \"I love EKB!\"
+}"
 ```
 
 This should return a JSON response with the predicted sentiment:
 
 ```json
-{"sentiment": "POSITIVE"}
+{"text":"I love EKB!","sentiment":{"sentiment":"POSITIVE","polarity": > 0.9}}
 ```
 
 You can test other input texts as well to see how the model performs.
 
-When you're finished testing, you can stop the Flask app by pressing Ctrl+C in the terminal.
+When you're finished testing, you can stop the FastAPI app (uvicorn server) by pressing Ctrl+C in the terminal.
 
 ## Dependencies
 
 The application requires the following Python packages:
 
-flask
-transformers
-flake8
+- httpx
+- fastapi
+- uvicorn
+- pydantic
+- flake8
+- flair

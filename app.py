@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from get_sentiment import get_sentiment_fx
+import uvicorn
 
 app = FastAPI()
 
@@ -22,3 +23,6 @@ async def predict_sentiment(input_text: InputText):
         "text": input_text.text,
         "sentiment": sentiment,
     }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8080, log_level="info")
