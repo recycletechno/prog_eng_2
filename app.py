@@ -18,6 +18,12 @@ def read_root():
 
 @app.post("/predict")
 async def predict_sentiment(input_text: InputText):
+
+    if not input_text.text:
+        return {
+            "error": "You should provide some text",
+        }
+
     sentiment = get_sentiment_dict(input_text.text)
     return {
         "text": input_text.text,
